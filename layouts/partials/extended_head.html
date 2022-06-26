@@ -2,3 +2,9 @@
 If you want to include any custom html just before </head>, put it in /layouts/partials/extended_head.html
 Do not put anything in this file - it's only here so that hugo won't throw an error if /layouts/partials/extended_head.html doesn't exist.
 -->
+
+<meta content="{{ delimit .Keywords ", " }}" name="keywords">
+
+<meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Title }}{{ if eq $isHomePage false }} - {{ .Site.Title }}{{ end }}" property="og:title">
+
+<meta content="{{ $isHomePage := eq .Title .Site.Title }}{{ .Site.Params.description }}{{ if eq $isHomePage false }} - {{ .Description }}{{ end }}" property="og:description">
